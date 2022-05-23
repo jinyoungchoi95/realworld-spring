@@ -21,6 +21,7 @@ public class UserService {
     public UserResponse save(final UserSaveRequest userSaveRequest) {
         User user = userSaveRequest.toEntity();
         checkDuplicateEmail(user.getEmail());
+        checkDuplicateUsername(user.getUsername());
 
         return UserResponse.from(userRepository.save(user));
     }
@@ -28,6 +29,12 @@ public class UserService {
     private void checkDuplicateEmail(final String email) {
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("user duplicated email");
+        }
+    }
+
+    private void checkDuplicateUsername(final String username) {
+        if (userRepository.existsByUsername(username)) {
+            throw new IllegalArgumentException("user duplicated username");
         }
     }
 }

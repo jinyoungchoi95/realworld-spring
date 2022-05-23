@@ -24,11 +24,25 @@ class UserServiceTest {
     @DisplayName("유저 저장 시 이메일 중복 예외")
     void saveExceptionByDuplicatedEmail() {
         // given
-        UserSaveRequest request = new UserSaveRequest("username", "email@email.com", "password", "bio", "image");
-        userRepository.save(request.toEntity());
+        userRepository.save(new UserSaveRequest("username1", "email@email.com", "password", "bio", "image").toEntity());
+        UserSaveRequest request = new UserSaveRequest("username2", "email@email.com", "password", "bio", "image");
 
         // when & then
         assertThatThrownBy(() -> userService.save(request))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("user duplicated email");
+    }
+
+    @Test
+    @DisplayName("유저 저장 시 유저 닉네임 중복 예외")
+    void saveExceptionByDuplicatedUsername() {
+        // given
+        userRepository.save(new UserSaveRequest("username", "email1@email.com", "password", "bio", "image").toEntity());
+        UserSaveRequest request = new UserSaveRequest("username", "email2@email.com", "password", "bio", "image");
+
+        // when & then
+        assertThatThrownBy(() -> userService.save(request))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("user duplicated username");
     }
 }
