@@ -36,8 +36,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
         @Test
         @DisplayName("정상적으로 동작하여 성공")
         void success() {
-            postUsers(request)
-                    .statusCode(HttpStatus.OK.value());
+            postUsers(request).statusCode(HttpStatus.OK.value());
         }
 
         @Test
@@ -45,8 +44,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
         void fail_when_duplicated_email_is_exist() {
             postUsers(new UserSaveRequest("Jake", "jake@jake.jake", "jakejake", null, null));
 
-            postUsers(request)
-                    .statusCode(HttpStatus.BAD_REQUEST.value());
+            postUsers(request).statusCode(HttpStatus.BAD_REQUEST.value());
         }
 
         @Test
@@ -54,8 +52,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
         void fail_when_duplicated_username_is_exist() {
             postUsers(new UserSaveRequest("Jacob", "jacob@jacob.jacob", "jakejake", null, null));
 
-            postUsers(request)
-                    .statusCode(HttpStatus.BAD_REQUEST.value());
+            postUsers(request).statusCode(HttpStatus.BAD_REQUEST.value());
         }
     }
 }
