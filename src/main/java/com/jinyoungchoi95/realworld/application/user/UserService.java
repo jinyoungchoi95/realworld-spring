@@ -1,9 +1,8 @@
-package com.jinyoungchoi95.realworld.application.service;
+package com.jinyoungchoi95.realworld.application.user;
 
-import com.jinyoungchoi95.realworld.application.dto.user.UserResponse;
-import com.jinyoungchoi95.realworld.application.dto.user.UserSaveRequest;
 import com.jinyoungchoi95.realworld.domain.user.User;
 import com.jinyoungchoi95.realworld.domain.user.UserRepository;
+import com.jinyoungchoi95.realworld.presentation.user.UserSaveRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
