@@ -1,7 +1,9 @@
 package com.jinyoungchoi95.realworld.application.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.jinyoungchoi95.realworld.application.dto.user.UserResponse;
 import com.jinyoungchoi95.realworld.application.dto.user.UserSaveRequest;
 import com.jinyoungchoi95.realworld.domain.user.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -44,5 +46,19 @@ class UserServiceTest {
         assertThatThrownBy(() -> userService.save(request))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("user duplicated username");
+    }
+
+    @Test
+    @DisplayName("유저 저장")
+    void save() {
+        // given
+        UserSaveRequest request = new UserSaveRequest("username", "email@email.com", "password", "bio", "image");
+
+        // when
+        UserResponse result = userService.save(request);
+
+        // then
+        assertThat(result).usingRecursiveComparison()
+                .isEqualTo(new UserResponse("email@email.com", "token", "username", "bio", "image"));
     }
 }
