@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user
+CREATE TABLE IF NOT EXISTS users
 (
     id         bigint       NOT NULL AUTO_INCREMENT,
     email      varchar(50)  NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS user
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS follow
+CREATE TABLE IF NOT EXISTS follows
 (
     id          bigint NOT NULL AUTO_INCREMENT,
     follower_id bigint NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS follow
     UNIQUE (follower_id, followee_id)
 );
 
-CREATE TABLE IF NOT EXISTS article
+CREATE TABLE IF NOT EXISTS articles
 (
     id          bigint       NOT NULL AUTO_INCREMENT,
     user_id     bigint       NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS article
     UNIQUE (user_id, slug)
 );
 
-CREATE TABLE IF NOT EXISTS comment
+CREATE TABLE IF NOT EXISTS comments
 (
     id         bigint    NOT NULL AUTO_INCREMENT,
     user_id    bigint    NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS comment
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS favorite
+CREATE TABLE IF NOT EXISTS favorites
 (
     id         bigint NOT NULL AUTO_INCREMENT,
     user_id    bigint NOT NULL,
@@ -57,14 +57,14 @@ CREATE TABLE IF NOT EXISTS favorite
     UNIQUE (user_id, article_id)
 );
 
-CREATE TABLE IF NOT EXISTS tag
+CREATE TABLE IF NOT EXISTS tags
 (
     id   bigint      NOT NULL AUTO_INCREMENT,
     name varchar(20) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS article_tag
+CREATE TABLE IF NOT EXISTS article_tags
 (
     article_id bigint NOT NULL,
     tag_id     bigint NOT NULL,
