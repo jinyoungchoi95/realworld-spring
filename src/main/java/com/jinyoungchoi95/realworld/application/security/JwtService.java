@@ -1,4 +1,4 @@
-package com.jinyoungchoi95.realworld.application.user;
+package com.jinyoungchoi95.realworld.application.security;
 
 public interface JwtService {
 

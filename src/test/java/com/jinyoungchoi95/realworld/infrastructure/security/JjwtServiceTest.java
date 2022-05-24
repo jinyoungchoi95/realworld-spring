@@ -1,9 +1,9 @@
-package com.jinyoungchoi95.realworld.infrastructure.config.security;
+package com.jinyoungchoi95.realworld.infrastructure.security;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.jinyoungchoi95.realworld.application.user.JwtService;
+import com.jinyoungchoi95.realworld.application.security.JwtService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
