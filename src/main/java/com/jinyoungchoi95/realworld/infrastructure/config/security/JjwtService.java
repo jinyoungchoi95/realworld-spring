@@ -1,6 +1,7 @@
 package com.jinyoungchoi95.realworld.infrastructure.config.security;
 
 import com.jinyoungchoi95.realworld.application.user.JwtService;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
@@ -26,5 +27,18 @@ public class JjwtService implements JwtService {
                 .setSubject(email)
                 .setExpiration(new Date((new Date()).getTime() + accessTime))
                 .compact();
+    }
+
+    @Override
+    public String resolveToken(final String token) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(key)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new JwtException("invalid jwt token");
+        }
     }
 }
