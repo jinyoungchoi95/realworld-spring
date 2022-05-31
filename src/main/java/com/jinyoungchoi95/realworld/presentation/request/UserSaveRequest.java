@@ -1,4 +1,4 @@
-package com.jinyoungchoi95.realworld.presentation.user;
+package com.jinyoungchoi95.realworld.presentation.request;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;

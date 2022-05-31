@@ -1,6 +1,6 @@
 package com.jinyoungchoi95.realworld.acceptance;
 
-import com.jinyoungchoi95.realworld.presentation.user.UserSaveRequest;
+import com.jinyoungchoi95.realworld.presentation.request.UserSaveRequest;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.BeforeEach;

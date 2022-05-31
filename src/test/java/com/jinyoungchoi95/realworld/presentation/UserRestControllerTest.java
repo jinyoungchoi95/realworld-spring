@@ -1,12 +1,15 @@
-package com.jinyoungchoi95.realworld.presentation.user;
+package com.jinyoungchoi95.realworld.presentation;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jinyoungchoi95.realworld.application.user.UserResponse;
-import com.jinyoungchoi95.realworld.application.user.UserService;
+import com.jinyoungchoi95.auth.application.JwtService;
+import com.jinyoungchoi95.auth.presentation.AuthenticationContext;
+import com.jinyoungchoi95.realworld.application.UserService;
+import com.jinyoungchoi95.realworld.application.response.UserResponse;
+import com.jinyoungchoi95.realworld.presentation.request.UserSaveRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,12 @@ class UserRestControllerTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private JwtService jwtService;
+
+    @MockBean
+    private AuthenticationContext authenticationContext;
 
     @Test
     @DisplayName("POST /api/users")

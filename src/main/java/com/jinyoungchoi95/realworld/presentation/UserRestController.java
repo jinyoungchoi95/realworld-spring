@@ -1,7 +1,8 @@
-package com.jinyoungchoi95.realworld.presentation.user;
+package com.jinyoungchoi95.realworld.presentation;
 
-import com.jinyoungchoi95.realworld.application.user.UserResponse;
-import com.jinyoungchoi95.realworld.application.user.UserService;
+import com.jinyoungchoi95.realworld.application.UserService;
+import com.jinyoungchoi95.realworld.application.response.UserResponse;
+import com.jinyoungchoi95.realworld.presentation.request.UserSaveRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

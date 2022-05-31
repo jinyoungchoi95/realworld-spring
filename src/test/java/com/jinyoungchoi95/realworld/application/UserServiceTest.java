@@ -1,10 +1,11 @@
-package com.jinyoungchoi95.realworld.application.user;
+package com.jinyoungchoi95.realworld.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.jinyoungchoi95.realworld.application.response.UserResponse;
 import com.jinyoungchoi95.realworld.domain.user.UserRepository;
-import com.jinyoungchoi95.realworld.presentation.user.UserSaveRequest;
+import com.jinyoungchoi95.realworld.presentation.request.UserSaveRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
