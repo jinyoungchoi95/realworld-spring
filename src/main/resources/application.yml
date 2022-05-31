@@ -20,5 +20,5 @@ server:
 
 jwt:
   token:
-    secret: b3JpX3RveV9wcm9qZWN0X3JlYWxfd29ybGRfamF2YV9zcHJpbmdfYm9vdF9zZWNyZXRfand0X3NhdWx0X2tleQo=
+    secret: bXktcmVhbHdvcmxkLXNwcmluZy1hY2Nlc3MtdG9rZW4tbXktcmVhbHdvcmxkLXNwcmluZy1hY2Nlc3MtdG9rZW4tbXktcmVhbHdvcmxkLXNwcmluZy1hY2Nlc3MtdG9rZW4=
     access-time: 1800000  # 30minutes

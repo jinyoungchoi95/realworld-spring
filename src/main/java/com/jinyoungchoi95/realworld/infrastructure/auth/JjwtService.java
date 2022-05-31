@@ -1,29 +1,32 @@
-package com.jinyoungchoi95.realworld.infrastructure.security;
+package com.jinyoungchoi95.realworld.infrastructure.auth;
 
-import com.jinyoungchoi95.realworld.application.security.JwtService;
+import com.jinyoungchoi95.realworld.application.auth.JwtService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import java.util.Date;
+import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JjwtService implements JwtService {
 
-    private final String key;
+    private final SecretKey key;
     private final long accessTime;
 
     public JjwtService(@Value("${jwt.token.secret}") final String key,
                        @Value("${jwt.token.access-time}") final long accessTime) {
-        this.key = key;
+        this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(key));
         this.accessTime = accessTime;
     }
 
     @Override
     public String createToken(final String email) {
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(key, SignatureAlgorithm.HS512)
                 .setSubject(email)
                 .setExpiration(new Date((new Date()).getTime() + accessTime))
                 .compact();
@@ -32,8 +35,9 @@ public class JjwtService implements JwtService {
     @Override
     public String resolveToken(final String token) {
         try {
-            return Jwts.parser()
+            return Jwts.parserBuilder()
                     .setSigningKey(key)
+                    .build()
                     .parseClaimsJws(token)
                     .getBody()
                     .getSubject();
